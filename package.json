@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:HeartCry": "node dist/heart-cry/server/server.mjs"
+    "serve:ssr:HeartCry": "node dist/heart-cry/server/server.mjs",
+    "generate:Types": "npx supabase gen types typescript --project-id rkmaputaelvmlszfququ > ./src/types/database.types.ts"
   },
   "private": true,
   "dependencies": {
@@ -15,11 +16,13 @@
     "@angular/compiler": "^19.2.0",
     "@angular/core": "^19.2.0",
     "@angular/forms": "^19.2.0",
+    "@angular/material": "^19.2.17",
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/platform-server": "^19.2.0",
     "@angular/router": "^19.2.0",
     "@angular/ssr": "^19.2.11",
+    "@supabase/supabase-js": "^2.49.4",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
