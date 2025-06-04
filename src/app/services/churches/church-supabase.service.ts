@@ -11,10 +11,10 @@ import { Database } from '../../../types/database.types';
 })
 export class ChurchSupabaseService {
 
-  private supabaseUrl = environment.supabaseUrl;
-  private supabaseKey = environment.supabaseKey;
+  private supabaseUrl = environment.SUPABASE_URL;
+  private supabaseKey = environment.SUPABASE_KEY;
 
-  supabase = createClient<Database>(this.supabaseUrl, this.supabaseKey);
+  supabase = createClient<Database>(environment.SUPABASE_URL, environment.SUPABASE_KEY);
 
   getAllChurches(): Observable<Church[]> {
     const promise = this.supabase.from("churches").select("*");

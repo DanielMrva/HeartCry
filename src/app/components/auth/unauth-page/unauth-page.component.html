@@ -1,0 +1,13 @@
+<div *ngIf="!isLogin; else loginTemplate">
+    <app-signup></app-signup>
+    <button mat-raised-button color="primary" (click)="toggleLogin()" class="mt-3">
+        Already have an account? Log in
+    </button>
+</div>
+
+<ng-template #loginTemplate>
+    <app-login></app-login>
+    <button mat-raised-button color="primary" (click)="toggleLogin()" class="mt-3">
+        Need to Sign Up?
+    </button>
+</ng-template>

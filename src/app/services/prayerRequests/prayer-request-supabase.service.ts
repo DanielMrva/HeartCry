@@ -12,10 +12,7 @@ import { Database } from '../../../types/database.types';
 
 export class PrayerRequestSupabaseService {
 
-  private supabaseUrl = environment.supabaseUrl;
-  private supabaseKey = environment.supabaseKey;
-
-  supabase = createClient<Database>(this.supabaseUrl, this.supabaseKey);
+  supabase = createClient<Database>(environment.SUPABASE_URL, environment.SUPABASE_KEY);
 
   getAllPrayerRequests(): Observable<PrayerRequest[]> {
     const promise = this.supabase.from("prayer_requests").select("*");
@@ -30,8 +27,8 @@ export class PrayerRequestSupabaseService {
     const promise = this.supabase
       .from("prayer_requests")
       .insert(prayerRequest)
-      .select("*")
-      .single();
+      // .select("*")
+      // .single();
     return from(promise).pipe(map((result) => result.data!));
   };
 

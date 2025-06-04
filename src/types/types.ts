@@ -57,6 +57,15 @@ export interface UserEditInput {
   role?: Role;
 }
 
+export interface AppUser {
+  id: string;
+  email: string;
+  is_staff: boolean;
+  role: 'parishioner' | 'prayer_minister' | 'church_admin' | 'app_admin';
+  updated_at: string;
+}
+
+
 export interface PrayerRequest {
   id: string;
   church_id: string;

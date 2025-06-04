@@ -1,0 +1,57 @@
+<form [formGroup]="prayerRequestForm" (ngSubmit)="onSubmit()" class="row">
+
+  <!-- Church selector stays as you already have it -->
+  <div class="form-group col-12 col-lg-6">
+    <app-church-selector
+      [initialChurchId]="prayerRequestForm.get('churchId')!.value"
+      (churchSelected)="onChurchSelected($event)">
+    </app-church-selector>
+    <mat-error *ngIf="prayerRequestForm.get('churchId')!.hasError('required')">
+      Church is required.
+    </mat-error>
+  </div>
+
+  <!-- Prayer Request textarea -->
+  <div class="form-group col-12 col-lg-6">
+    <mat-form-field appearance="fill" class="full-width-input">
+      <mat-label>Prayer Request</mat-label>
+      <textarea
+        matInput
+        formControlName="contentText"
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5">
+      </textarea>
+      <mat-error *ngIf="prayerRequestForm.get('contentText')!.hasError('required')">
+        Please share your prayer request.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- Anonymous checkbox (no mat-form-field wrapper!) -->
+  <div class="form-group col-12 col-lg-6">
+    <mat-checkbox formControlName="anonymous">
+      Submit Anonymously
+    </mat-checkbox>
+  </div>
+
+  <!-- Request Format select -->
+  <div class="form-group col-12 col-lg-6">
+    <mat-form-field appearance="fill" class="full-width-input">
+      <mat-label>Request Format</mat-label>
+      <mat-select formControlName="requestType">
+        <mat-option *ngFor="let type of requestTypes" [value]="type">
+          {{ type | uppercase }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Submit button -->
+  <div class="form-group col-12">
+    <button mat-raised-button color="primary" type="submit" [disabled]="loading()">
+      Submit
+    </button>
+  </div>
+</form>
